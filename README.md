@@ -127,8 +127,8 @@
     </tr>
     <tr>
         <td><code>debt_to_supplier</code></td>
-        <td><code>DecimalField</code></td>
-        <td>Задолженность перед поставщиком с точностью до копейки.</td>
+        <td><code>IntegerField</code></td>
+        <td>Задолженность перед поставщиком в копейках.</td>
     </tr>
     <tr>
         <td><code>created_at</code></td>
