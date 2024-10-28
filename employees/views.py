@@ -81,7 +81,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
 
     def get_serializer_class(self):
-        if self.action in ['update', 'partial_update']:
+        if self.action in ["update", "partial_update"]:
             return EmployeeUpdateSerializer
         else:
             return EmployeeSerializer

@@ -1,2 +1,2 @@
-from .node import NetworkNodeSerializer # noqa
-from .product import ProductSerializer # noqa
+from .node import NetworkNodeSerializer  # noqa
+from .product import ProductSerializer  # noqa
