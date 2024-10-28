@@ -9,8 +9,12 @@ class Product(models.Model):
     release_date = models.DateField(verbose_name="Дата выхода на рынок")
 
     # Узел сети, который продаёт этот продукт
-    network_node = models.ForeignKey('NetworkNode', on_delete=models.CASCADE, related_name='products',
-                                     verbose_name="Продающий узел сети")
+    network_node = models.ForeignKey(
+        "NetworkNode",
+        on_delete=models.CASCADE,
+        related_name="products",
+        verbose_name="Продающий узел сети",
+    )
 
     def __str__(self):
         return f"{self.name} ({self.model})"

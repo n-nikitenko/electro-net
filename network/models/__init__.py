@@ -1,2 +1,2 @@
-from .node import NetworkNode # noqa
-from .product import Product # noqa
+from .node import NetworkNode  # noqa
+from .product import Product  # noqa

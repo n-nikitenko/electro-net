@@ -11,15 +11,32 @@ class NetworkNode(models.Model):
     house_number = models.CharField(max_length=10, verbose_name="Номер дома")
 
     supplier = models.ForeignKey(
-        'self', null=True, blank=True, on_delete=models.SET_NULL, related_name='customers', verbose_name="Поставщик"
+        "self",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="customers",
+        verbose_name="Поставщик",
     )
 
-    debt_to_supplier = models.PositiveIntegerField(default=0, verbose_name="Задолженность перед поставщиком")
+    debt_to_supplier = models.PositiveIntegerField(
+        default=0, verbose_name="Задолженность перед поставщиком"
+    )
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Время создания")
 
     def __str__(self):
         return f"{self.name} ({self.country}), {self.city})"
+
+    def node_type(self):
+        if self.supplier is None:
+            return "Завод"
+        elif self.supplier and self.supplier.supplier is None:
+            return "Розничная сеть"
+        else:
+            return "ИП"
+
+    node_type.short_description = "Тип узла"  # Описание для админки
 
     class Meta:
         verbose_name = "Узел сети"
