@@ -7,6 +7,9 @@ class ProductSerializer(serializers.ModelSerializer):
     network_node_name = serializers.CharField(
         source="network_node.name", read_only=True
     )
+    country = serializers.CharField(
+        source="network_node.country", read_only=True
+    )
 
     class Meta:
         model = Product
@@ -15,6 +18,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "name",
             "model",
             "release_date",
+            "country",
             "network_node",
             "network_node_name",
         ]
