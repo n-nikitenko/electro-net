@@ -13,6 +13,8 @@ docker-compose.yaml
 static/
 deploy.sh
 .gitlab-ci.yml
+nginx.conf
+.flake8
 
 # Unit test / coverage reports
 htmlcov/
@@ -30,8 +32,6 @@ coverage.xml
 cover/
 
 # Environments
-.env
-.env.*
 .venv
 env/
 venv/
