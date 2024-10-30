@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "employees",
     "network",
     "django_seed",
+    "debug_toolbar"
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -127,7 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -161,3 +163,7 @@ SWAGGER_SETTINGS = {
     "TAGS_SORTER": "alpha",
     "DEFAULT_MODEL_RENDERING": "example"
 }
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
