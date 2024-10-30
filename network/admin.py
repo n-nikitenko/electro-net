@@ -53,6 +53,11 @@ class NetworkNodeAdmin(admin.ModelAdmin):
 
     actions = [clear_debt]
 
+    def get_queryset(self, request):
+        # Оптимизация запросов в админке
+        queryset = super().get_queryset(request)
+        return queryset.select_related('supplier').prefetch_related('products')
+
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -80,3 +85,8 @@ class ProductAdmin(admin.ModelAdmin):
 
     supplier_city.admin_order_field = 'network_node__city'
     supplier_city.short_description = "Город  поставщика"
+
+    def get_queryset(self, request):
+        # Оптимизация запросов в админке
+        queryset = super().get_queryset(request)
+        return queryset.select_related('network_node')

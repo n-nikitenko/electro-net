@@ -14,7 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+import debug_toolbar
 from django.contrib import admin
 from django.urls import include, path
 from drf_yasg import openapi
@@ -43,6 +43,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('__debug__/', include(debug_toolbar.urls)),
     path("admin/", admin.site.urls),
     path("employees/", include("employees.urls", "employees")),
     path("network/", include("network.urls", "network")),

@@ -62,7 +62,7 @@ node_update_responses = {
     ),
 )
 class NetworkNodeViewSet(viewsets.ModelViewSet):
-    queryset = NetworkNode.objects.all()
+    queryset = NetworkNode.objects.all().select_related('supplier').prefetch_related('products')
     pagination_class = NetworkPaginator
     permission_classes = [permissions.IsAuthenticated, IsActiveEmployeePermission]
     filterset_class = NetworkNodeCountryFilter

@@ -46,7 +46,7 @@ from network.serializers import ProductSerializer
     ),
 )
 class NetworkProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().select_related('network_node')
     pagination_class = NetworkPaginator
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticated, IsActiveEmployeePermission]
