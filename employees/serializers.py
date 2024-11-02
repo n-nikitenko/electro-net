@@ -37,7 +37,7 @@ class EmployeeUpdateSerializer(EmployeeSerializer):
             "last_name",
             "email",
         )
-        optional_fields = ("email", "position", "name", "password", "username")
+        optional_fields = ("email", "first_name", "last_name", "password", "username")
         extra_kwargs = {
             "id": {"read_only": True},
         }
