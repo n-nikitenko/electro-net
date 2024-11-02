@@ -69,7 +69,7 @@
    ```python manage.py runserver```
 7. Доступ к приложению:
 
-- Документация: http://localhost:8080/swagger/
+- Документация: http://localhost:8080/
 - Админ-панель: http://localhost:8080/admin/
 
 ### API
