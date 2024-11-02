@@ -13,7 +13,7 @@ router.register(r"employees", EmployeeViewSet, basename="employee")
 urlpatterns = [
     path(
         "login/",
-        EmployeeTokenObtainPairView.as_view(__doc__="Обновление токена"),
+        EmployeeTokenObtainPairView.as_view(),
         name="token_obtain_pair",
     ),
     path("token/refresh/", EmployeeTokenRefreshView.as_view(), name="token_refresh"),

@@ -1,7 +1,8 @@
 from django.utils.decorators import method_decorator
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import permissions, viewsets
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.serializers import (TokenObtainPairSerializer,
                                                   TokenRefreshSerializer)
@@ -77,7 +78,6 @@ class EmployeeTokenRefreshView(TokenRefreshView):
 )
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
     def get_serializer_class(self):
@@ -85,3 +85,19 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             return EmployeeUpdateSerializer
         else:
             return EmployeeSerializer
+
+    def get_permissions(self):
+        if self.action == "create":
+            self.permission_classes = (
+                AllowAny,
+            )
+        else:
+            self.permission_classes = (
+                IsAuthenticated,
+            )
+        return super().get_permissions()
+
+    def perform_create(self, serializer):
+        user = serializer.save(is_active=True)
+        user.set_password(user.password)
+        user.save()
